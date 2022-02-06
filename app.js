@@ -29,15 +29,33 @@ db.sequelize.sync({
   force: false,
 });
 
+//! Lancement des fichiers étalonnage.
+const etalonnageAir = require('/home/pi/Desktop/champiBack/gestion/gestionAir/etalonnageAir.js');
+const etalonnageHum = require('/home/pi/Desktop/champiBack/gestion/gestionHum/etalonnageHum.js');
+const etalonnageSec = require('/home/pi/Desktop/champiBack/gestion/gestionHum/etalonnageSec.js');
+const etalonnageSub = require('/home/pi/Desktop/champiBack/gestion/gestionSubstrat /etalonnageSub.js');
+
 //! Utilisation de body parser
 app.use(bodyParser.json());
 
-//! Socket IO pour html.
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+//! Liste des routes.
+const genererPageAccueil = require('/home/pi/Desktop/champiEtalonnage/pages/index-get.js');
+
+app.get('/', async (req, res) => {
+  const indexHtml = await genererPageAccueil();
+
+  res.send(indexHtml);
 });
 
-//! Liste des routes.
+//* Le CSS.
+app.use(
+  '/styles.css',
+  express.static('/home/pi/Desktop/champiEtalonnage/styles.css ')
+);
+app.use(
+  '/stylesBases.css',
+  express.static('/home/pi/Desktop/champiEtalonnage/stylesBases.css')
+);
 
 // app.use('/api/etalonnageRoutes', etalonnageRoutes);
 

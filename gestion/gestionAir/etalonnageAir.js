@@ -91,14 +91,14 @@ setInterval(() => {
   resultats()
     .then((temperatureMoyenneAir) => {
       // Calcule de la température.
-      // console.log(
-      //   bleu,
-      //   '[ GESTION AIR      ] Temperature Moyenne Air : ',
-      //   temperatureMoyenneAir
-      // );
+      console.log(
+        bleu,
+        '[ GESTION AIR      ] Temperature Moyenne Air : ',
+        temperatureMoyenneAir
+      );
     })
     .then(() => {
-      // Transmission des données au serveur socket Io.
+      //* Transmission des données au serveur socket Io.
       let valeureEtalonnageAir = parseFloat(temperatureMoyenneAir).toFixed(1);
 
       socket.emit('etalonnageAir', {

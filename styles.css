@@ -1,0 +1,83 @@
+.box {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxEtalonnageTitle,
+.boxEtalonnageItems {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxTitle,
+.boxeValues {
+  width: 100%;
+  height: 65px;
+  border: solid black 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+}
+
+.boxTitle {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.boxeValues {
+  font-size: 1rem;
+}
+
+.fontSize {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.boxeValuesBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boxeValuesBtnMoins,
+.boxeValuesBtnPlus {
+  width: 90%;
+  margin: 5px;
+  color: white;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxeValuesBtnMoins {
+  background-color: green;
+}
+
+.boxeValuesBtnPlus {
+  background-color: red;
+}
+
+.boxeValuesBtn {
+  background-color: blue;
+  width: 90%;
+  margin: 5px;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
