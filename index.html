@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestion de l'étalonnage</title>
     <link rel="icon" type="image/png" href="./images/faviconChampi.png" />
-    <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <link rel="stylesheet" type="text/css" href="./stylesBases.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/stylesBases.css" />
   </head>
   <body>
     <div class="box">
@@ -80,5 +80,23 @@
         </div>
       </div>
     </div>
+    <script src="./logiques/logiques.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      const socket = io();
+
+      socket.on('connect', () => {
+        console.log('Client Etalonnage connecté', socket.id);
+      });
+
+      socket.on('disconnect', () => {
+        console.log('Client Etalonnage déconnecté');
+      });
+
+      socket.on('etalonnageAir', (msg) => {
+        console.log('Etalonnage Air :', msg.etalonnageAir);
+      });
+    </script>
   </body>
 </html>

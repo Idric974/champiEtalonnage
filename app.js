@@ -47,16 +47,14 @@ app.get('/', async (req, res) => {
   res.send(indexHtml);
 });
 
-//* Le CSS.
-app.use(
-  '/styles.css',
-  express.static('/home/pi/Desktop/champiEtalonnage/styles.css ')
-);
-app.use(
-  '/stylesBases.css',
-  express.static('/home/pi/Desktop/champiEtalonnage/stylesBases.css')
-);
+//! Le CSS.
+app.use('/styles', express.static('/home/pi/Desktop/champiEtalonnage/styles'));
+app.use('/styles', express.static('/home/pi/Desktop/champiEtalonnage/styles'));
 
-// app.use('/api/etalonnageRoutes', etalonnageRoutes);
+//! La logique js
+// app.use(
+//   '/logiques',
+//   express.static('/home/pi/Desktop/champiEtalonnage/logiques')
+// );
 
 module.exports = app;
