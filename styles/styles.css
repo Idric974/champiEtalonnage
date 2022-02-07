@@ -32,10 +32,13 @@
 .boxTitle {
   font-size: 1.5rem;
   font-weight: bolder;
+  background-color: #373964;
+  color: white;
 }
 
 .boxeValues {
-  font-size: 1rem;
+  font-size: 2rem;
+  font-weight: bolder;
 }
 
 .fontSize {
@@ -71,7 +74,7 @@
 }
 
 .boxeValuesBtn {
-  background-color: blue;
+  background-color: #373964;
   width: 90%;
   margin: 5px;
   color: white;

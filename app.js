@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 //! Etalonnage
-// const etalonnageRoutes = require('./routes/etalonnageRoutes');
+const etalonnageRoutes = require('./routes/etalonnageRoutes');
 
 //! Utilisation de cors pour les connexions
 const cors = require('cors');
@@ -47,14 +47,19 @@ app.get('/', async (req, res) => {
   res.send(indexHtml);
 });
 
+//! Les images.
+app.use('/images', express.static('/home/pi/Desktop/champiEtalonnage/images'));
+
 //! Le CSS.
-app.use('/styles', express.static('/home/pi/Desktop/champiEtalonnage/styles'));
 app.use('/styles', express.static('/home/pi/Desktop/champiEtalonnage/styles'));
 
 //! La logique js
-// app.use(
-//   '/logiques',
-//   express.static('/home/pi/Desktop/champiEtalonnage/logiques')
-// );
+app.use(
+  '/logiques',
+  express.static('/home/pi/Desktop/champiEtalonnage/logiques')
+);
+
+//! Etalonnage
+app.use('/api/etalonnageRoutes', etalonnageRoutes);
 
 module.exports = app;

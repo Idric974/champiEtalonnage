@@ -52,10 +52,12 @@ server.on('listening', () => {
   const bind =
     typeof address === 'string' ? 'pipe ' + address : 'port ' + `${port}`;
 
-  console.log(
-    '\x1b[32m',
-    '[ NODE SERVER      ] Le serveur est démarré sur le ' + bind
-  );
+  // console.log(
+  //   '\x1b[32m',
+  //   '[ NODE SERVER      ] Le serveur est démarré sur le http://localhost:' +
+  //     bind
+  // );
+  console.log(`Le serveur est démarré sur : http://localhost:${port}/`);
 });
 
 process.on('warning', (e) =>

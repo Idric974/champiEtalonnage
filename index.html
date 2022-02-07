@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestion de l'étalonnage</title>
-    <link rel="icon" type="image/png" href="./images/faviconChampi.png" />
+
+    <link rel="icon" href="./images/champignon.ico" />
     <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="./styles/stylesBases.css" />
   </head>
   <body>
+    <!--  -->
     <div class="box">
+      <!-- Les titre du tableau -->
+
       <div class="boxEtalonnageTitle">
         <div class="boxTitle">Itemes</div>
         <div class="boxTitle">Température bute</div>
@@ -20,71 +24,187 @@
         <div class="boxTitle">Validation</div>
       </div>
 
+      <!-- Item  Température Air -->
+
       <div class="boxEtalonnageItems">
         <div class="boxeValues fontSize">Température Air</div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
+        <div id="temperatureBruteAir" class="boxeValues"></div>
+        <div id="temperatureAirEtalonnee" class="boxeValues"></div>
+        <div class="boxeValues" id="localeStorageEtalAir"></div>
         <div class="boxeValues">
-          <button class="boxeValuesBtnMoins">-</button>
-          <div class="boxeValues"></div>
-          <button class="boxeValuesBtnPlus">+</button>
+          <button class="boxeValuesBtnMoins" onclick="clicEtalAirMoins()">
+            -
+          </button>
+          <div class="boxeValues" id="etalonnageAirValue"></div>
+          <button class="boxeValuesBtnPlus" onclick="clicEtalAirPlus()">
+            +
+          </button>
         </div>
         <div class="boxeValues">
-          <button class="boxeValuesBtn">Validation</button>
+          <button class="boxeValuesBtn" onclick="validationEtalAir()">
+            Validation
+          </button>
         </div>
       </div>
+
+      <!-- ------------------------------ -->
+
+      <!-- Item  Température Sec -->
 
       <div class="boxEtalonnageItems">
         <div class="boxeValues fontSize">Température Sec</div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
+        <div id="temperatureBruteSec" class="boxeValues"></div>
+        <div id="temperatureSecEtalonnee" class="boxeValues"></div>
+        <div class="boxeValues" id="localeStorageEtalSec"></div>
         <div class="boxeValues">
-          <button class="boxeValuesBtnMoins">-</button>
-          <div class="boxeValues"></div>
-          <button class="boxeValuesBtnPlus">+</button>
+          <button class="boxeValuesBtnMoins" onclick="clicEtalSecMoins()">
+            -
+          </button>
+          <div class="boxeValues" id="etalonnageSecValue"></div>
+          <button class="boxeValuesBtnPlus" onclick="clicEtalSecPlus()">
+            +
+          </button>
         </div>
         <div class="boxeValues">
-          <button class="boxeValuesBtn">Validation</button>
+          <button class="boxeValuesBtn" onclick="validationEtalSec()">
+            Validation
+          </button>
         </div>
       </div>
+
+      <!-- ------------------------------ -->
+
+      <!-- Item  Température Hum -->
 
       <div class="boxEtalonnageItems">
         <div class="boxeValues fontSize">Température Hum</div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
+        <div id="temperatureBruteHum" class="boxeValues"></div>
+        <div id="temperatureHumEtalonnee" class="boxeValues"></div>
+        <div class="boxeValues" id="localeStorageEtalHum"></div>
         <div class="boxeValues">
-          <button class="boxeValuesBtnMoins">-</button>
-          <div class="boxeValues"></div>
-          <button class="boxeValuesBtnPlus">+</button>
+          <button class="boxeValuesBtnMoins" onclick="clicEtalHumMoins()">
+            -
+          </button>
+          <div class="boxeValues" id="etalonnageHumValue"></div>
+          <button class="boxeValuesBtnPlus" onclick="clicEtalHumPlus()">
+            +
+          </button>
         </div>
         <div class="boxeValues">
-          <button class="boxeValuesBtn">Validation</button>
+          <button class="boxeValuesBtn" onclick="validationEtalHum()">
+            Validation
+          </button>
         </div>
       </div>
+
+      <!-- ------------------------------ -->
+
+      <!-- Item  Température Sub -->
 
       <div class="boxEtalonnageItems">
         <div class="boxeValues fontSize">Température Sub</div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
-        <div class="boxeValues"></div>
+        <div id="temperatureBruteSub" class="boxeValues"></div>
+        <div id="temperatureSubEtalonnee" class="boxeValues"></div>
+        <div class="boxeValues" id="localeStorageEtalSub"></div>
         <div class="boxeValues">
-          <button class="boxeValuesBtnMoins">-</button>
-          <div class="boxeValues"></div>
-          <button class="boxeValuesBtnPlus">+</button>
+          <button class="boxeValuesBtnMoins" onclick="clicEtalSubMoins()">
+            -
+          </button>
+          <div class="boxeValues" id="etalonnageSubValue"></div>
+          <button class="boxeValuesBtnPlus" onclick="clicEtalSubPlus()">
+            +
+          </button>
         </div>
         <div class="boxeValues">
-          <button class="boxeValuesBtn">Validation</button>
+          <button class="boxeValuesBtn" onclick="validationEtalSub()">
+            Validation
+          </button>
         </div>
       </div>
-    </div>
-    <script src="./logiques/logiques.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
 
+      <!-- ------------------------------ -->
+    </div>
+    <!-- <script src="./logiques/logiques.js"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.js"
+      integrity="sha512-II/TvxJGs27N3NEu/WWRFtyhBdSByZwS5ovX1vHXVsi2JXj0I5hRvHwgBPKbzZDk0wsKVDoEUEI8rAYGEF394A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script>
       const socket = io();
+
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ Etalonnage Air ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+      let valEtalonnageAir = 0;
+
+      //* Paramétrage bouton ➕.
+
+      let clicEtalAirMoins = () => {
+        // console.log('clic sur le bouton Etal Air Moins');
+
+        valEtalonnageAir -= 0.1;
+
+        valArrond = parseFloat(valEtalonnageAir).toFixed(1);
+
+        document.getElementById('etalonnageAirValue').innerHTML = valArrond;
+
+        localStorage.setItem('Valeure étalonnage Air : ', valArrond);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Paramétrage bouton ➖.
+
+      let clicEtalAirPlus = () => {
+        // console.log('clic sur le bouton Etal Air Plus');
+
+        valEtalonnageAir += 0.1;
+
+        valArrond = parseFloat(valEtalonnageAir).toFixed(1);
+
+        document.getElementById('etalonnageAirValue').innerHTML = valArrond;
+
+        localStorage.setItem('Valeure étalonnage Air : ', valArrond);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Récupération de la valeur dans le localStorage.
+
+      let valEtalAir = localStorage.getItem('Valeure étalonnage Air : ');
+
+      let affichagevalEtalAir = parseFloat(valEtalAir).toFixed(1);
+
+      document.getElementById('localeStorageEtalAir').innerHTML =
+        affichagevalEtalAir;
+
+      //* ---------------------------------------------------------
+
+      //* Validation étalonnage.
+
+      let validationEtalAir = () => {
+        // console.log('Clic sur bouton validation Etal Air');
+        const boutonValiderEtalAir = axios
+          .post(
+            'http://localhost:3001/api/etalonnageRoutes/valeureEtalonnageAir/',
+            {
+              valeureEtalonnageAir: valEtalAir,
+            }
+          )
+          .then(function (response) {
+            console.log(response.data);
+            console.log('Valeure Etalonnage Air', valEtalAir);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        history.go(0);
+      };
+
+      //* ---------------------------------------------------------
 
       socket.on('connect', () => {
         console.log('Client Etalonnage connecté', socket.id);
@@ -95,8 +215,300 @@
       });
 
       socket.on('etalonnageAir', (msg) => {
-        console.log('Etalonnage Air :', msg.etalonnageAir);
+        // console.log('Etalonnage Air :', msg.etalonnageAir);
+        temperatureBruteAir = msg.etalonnageAir;
+
+        let parseTemperatureBruteAir = parseFloat(temperatureBruteAir);
+
+        let parseLocalStorageEtalAir = parseFloat(affichagevalEtalAir);
+
+        let temperatureAirEtalonnee = parseFloat(
+          parseTemperatureBruteAir + parseLocalStorageEtalAir
+        ).toFixed(2);
+
+        document.getElementById('temperatureBruteAir').innerHTML =
+          parseTemperatureBruteAir;
+
+        document.getElementById('temperatureAirEtalonnee').innerHTML =
+          temperatureAirEtalonnee;
       });
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ FIN Etalonnage Air ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ Etalonnage Hum ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+      let valEtalonnageHum = 0;
+
+      //* Paramétrage bouton ➕.
+
+      let clicEtalHumMoins = () => {
+        // console.log('clic sur le bouton Etal Hum Moins');
+
+        valEtalonnageHum -= 0.1;
+
+        valArrondHum = parseFloat(valEtalonnageHum).toFixed(1);
+
+        document.getElementById('etalonnageHumValue').innerHTML = valArrondHum;
+
+        localStorage.setItem('Valeure étalonnage Hum : ', valArrondHum);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Paramétrage bouton ➖.
+
+      let clicEtalHumPlus = () => {
+        // console.log('clic sur le bouton Etal Hum Plus');
+
+        valEtalonnageHum += 0.1;
+
+        valArrondHum = parseFloat(valEtalonnageHum).toFixed(1);
+
+        document.getElementById('etalonnageHumValue').innerHTML = valArrondHum;
+
+        localStorage.setItem('Valeure étalonnage Hum : ', valArrondHum);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Récupération de la valeur dans le localStorage.
+
+      let valEtalHum = localStorage.getItem('Valeure étalonnage Hum : ');
+
+      let affichagevalEtalHum = parseFloat(valEtalHum).toFixed(1);
+
+      document.getElementById('localeStorageEtalHum').innerHTML =
+        affichagevalEtalHum;
+
+      //* ---------------------------------------------------------
+
+      //* Validation étalonnage.
+
+      let validationEtalHum = () => {
+        // console.log('Clic sur bouton validation Etal Hum');
+        const boutonValiderEtalHum = axios
+          .post(
+            'http://localhost:3001/api/etalonnageRoutes/valeureEtalonnageHum/',
+            {
+              valeureEtalonnageHum: valEtalHum,
+            }
+          )
+          .then(function (response) {
+            console.log(response.data);
+            console.log('Valeure Etalonnage Hum', valEtalHum);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        history.go(0);
+      };
+
+      //* ---------------------------------------------------------
+
+      socket.on('etalonnageHum', (msg) => {
+        // console.log('Etalonnage Hum :', msg.etalonnageHum);
+        temperatureBruteHum = msg.etalonnageHum;
+
+        let parseTemperatureBruteHum = parseFloat(temperatureBruteHum);
+
+        let parseLocalStorageEtalHum = parseFloat(affichagevalEtalHum);
+
+        let temperatureHumEtalonnee = parseFloat(
+          parseTemperatureBruteHum + parseLocalStorageEtalHum
+        ).toFixed(2);
+
+        document.getElementById('temperatureBruteHum').innerHTML =
+          parseTemperatureBruteHum;
+
+        document.getElementById('temperatureHumEtalonnee').innerHTML =
+          temperatureHumEtalonnee;
+      });
+
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ FIN Etalonnage Hum ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ Etalonnage Sec ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+      let valEtalonnageSec = 0;
+
+      //* Paramétrage bouton ➕.
+
+      let clicEtalSecMoins = () => {
+        // console.log('clic sur le bouton Etal Sec Moins');
+
+        valEtalonnageSec -= 0.1;
+
+        valArrondSec = parseFloat(valEtalonnageSec).toFixed(1);
+
+        document.getElementById('etalonnageSecValue').innerHTML = valArrondSec;
+
+        localStorage.setItem('Valeure étalonnage Sec : ', valArrondSec);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Paramétrage bouton ➖.
+
+      let clicEtalSecPlus = () => {
+        // console.log('clic sur le bouton Etal Sec Plus');
+
+        valEtalonnageSec += 0.1;
+
+        valArrondSec = parseFloat(valEtalonnageSec).toFixed(1);
+
+        document.getElementById('etalonnageSecValue').innerHTML = valArrondSec;
+
+        localStorage.setItem('Valeure étalonnage Sec : ', valArrondSec);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Récupération de la valeur dans le localStorage.
+
+      let valEtalSec = localStorage.getItem('Valeure étalonnage Sec : ');
+
+      let affichagevalEtalSec = parseFloat(valEtalSec).toFixed(1);
+
+      document.getElementById('localeStorageEtalSec').innerHTML =
+        affichagevalEtalSec;
+
+      //* ---------------------------------------------------------
+
+      //* Validation étalonnage.
+
+      let validationEtalSec = () => {
+        // console.log('Clic sur bouton validation Etal Sec');
+        const boutonValiderEtalSec = axios
+          .post(
+            'http://localhost:3001/api/etalonnageRoutes/valeureEtalonnageSec/',
+            {
+              valeureEtalonnageSec: valEtalSec,
+            }
+          )
+          .then(function (response) {
+            console.log(response.data);
+            console.log('Valeure Etalonnage Sec', valEtalSec);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        history.go(0);
+      };
+
+      //* ---------------------------------------------------------
+
+      socket.on('etalonnageSec', (msg) => {
+        // console.log('Etalonnage Sec :', msg.etalonnageSec);
+        temperatureBruteSec = msg.etalonnageSec;
+
+        let parseTemperatureBruteSec = parseFloat(temperatureBruteSec);
+
+        let parseLocalStorageEtalSec = parseFloat(affichagevalEtalSec);
+
+        let temperatureSecEtalonnee = parseFloat(
+          parseTemperatureBruteSec + parseLocalStorageEtalSec
+        ).toFixed(2);
+
+        document.getElementById('temperatureBruteSec').innerHTML =
+          parseTemperatureBruteSec;
+
+        document.getElementById('temperatureSecEtalonnee').innerHTML =
+          temperatureSecEtalonnee;
+      });
+
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ FIN Etalonnage Sec ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ Etalonnage Sub ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+      let valEtalonnageSub = 0;
+
+      //* Paramétrage bouton ➕.
+
+      let clicEtalSubMoins = () => {
+        // console.log('clic sur le bouton Etal Sub Moins');
+
+        valEtalonnageSub -= 0.1;
+
+        valArrondSub = parseFloat(valEtalonnageSub).toFixed(1);
+
+        document.getElementById('etalonnageSubValue').innerHTML = valArrondSub;
+
+        localStorage.setItem('Valeure étalonnage Sub : ', valArrondSub);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Paramétrage bouton ➖.
+
+      let clicEtalSubPlus = () => {
+        // console.log('clic sur le bouton Etal Sub Plus');
+
+        valEtalonnageSub += 0.1;
+
+        valArrondSub = parseFloat(valEtalonnageSub).toFixed(1);
+
+        document.getElementById('etalonnageSubValue').innerHTML = valArrondSub;
+
+        localStorage.setItem('Valeure étalonnage Sub : ', valArrondSub);
+      };
+
+      //* ---------------------------------------------------------
+
+      //* Récupération de la valeur dans le localStorage.
+
+      let valEtalSub = localStorage.getItem('Valeure étalonnage Sub : ');
+
+      let affichagevalEtalSub = parseFloat(valEtalSub).toFixed(1);
+
+      document.getElementById('localeStorageEtalSub').innerHTML =
+        affichagevalEtalSub;
+
+      //* ---------------------------------------------------------
+
+      //* Validation étalonnage.
+
+      let validationEtalSub = () => {
+        // console.log('Clic sur bouton validation Etal Sub');
+        const boutonValiderEtalSub = axios
+          .post(
+            'http://localhost:3001/api/etalonnageRoutes/valeureEtalonnageSub/',
+            {
+              valeureEtalonnageSub: valEtalSub,
+            }
+          )
+          .then(function (response) {
+            console.log(response.data);
+            console.log('Valeure Etalonnage Sub', valEtalSub);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        history.go(0);
+      };
+
+      //* ---------------------------------------------------------
+
+      socket.on('etalonnageSub', (msg) => {
+        // console.log('Etalonnage Sub :', msg.etalonnageSub);
+        temperatureBruteSub = msg.etalonnageSub;
+
+        let parseTemperatureBruteSub = parseFloat(temperatureBruteSub);
+
+        let parseLocalStorageEtalSub = parseFloat(affichagevalEtalSub);
+
+        let temperatureSubEtalonnee = parseFloat(
+          parseTemperatureBruteSub + parseLocalStorageEtalSub
+        ).toFixed(2);
+
+        document.getElementById('temperatureBruteSub').innerHTML =
+          parseTemperatureBruteSub;
+
+        document.getElementById('temperatureSubEtalonnee').innerHTML =
+          temperatureSubEtalonnee;
+      });
+
+      //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ FIN Etalonnage Sub ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
     </script>
   </body>
 </html>
