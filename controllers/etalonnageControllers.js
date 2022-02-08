@@ -40,28 +40,28 @@ exports.valeureEtalonnageAir = (req, res, next) => {
 
 //* ➖ ➖ ➖ ➖ ➖ ➖ GET Valeure Etalonnage Air ➖ ➖ ➖ ➖ ➖ ➖ //
 
-exports.getValEtalonnageAir = (req, res) => {
-  res.status(200).json({ temperatureAir });
+const valeurEtalonnage = db.etalonnageAir;
 
+exports.getValEtalonnageAir = (req, res) => {
   console.log('requete getValEtalonnageAir OK');
 
-  // gestionAirEtalonnageModels
-  //   .findOne({
-  //     attributes: [[Sequelize.fn('max', Sequelize.col('id')), 'maxid']],
-  //     raw: true,
-  //   })
-  //   .then((id) => {
-  //     // console.log('Le dernier id de gestionAir est : ', id);
-  //     // console.log(id.maxid);
+  valeurEtalonnage
+    .findOne({
+      attributes: [[Sequelize.fn('max', Sequelize.col('id')), 'maxid']],
+      raw: true,
+    })
+    .then((id) => {
+      // console.log('Le dernier id de gestionAir est : ', id);
+      // console.log(id.maxid);
 
-  //     gestionAirEtalonnageModels
-  //       .findOne({
-  //         where: { id: id.maxid },
-  //       })
-  //       .then((temperatureAir) => {
-  //         res.status(200).json({ temperatureAir });
-  //       });
-  //   });
+      valeurEtalonnage
+        .findOne({
+          where: { id: id.maxid },
+        })
+        .then((valEtalAir) => {
+          res.status(200).json({ valEtalAir });
+        });
+    });
 };
 
 //! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
@@ -98,7 +98,30 @@ exports.valeureEtalonnageSec = (req, res, next) => {
       );
     });
 };
-//
+
+//* ➖ ➖ ➖ ➖ ➖ ➖ GET Valeure Etalonnage Sec ➖ ➖ ➖ ➖ ➖ ➖ //
+
+const valeurEtalonnageSec = db.etalonnageSec;
+
+exports.getValEtalonnageSec = (req, res) => {
+  valeurEtalonnageSec
+    .findOne({
+      attributes: [[Sequelize.fn('max', Sequelize.col('id')), 'maxid']],
+      raw: true,
+    })
+    .then((id) => {
+      // console.log('Le dernier id de gestionAir est : ', id);
+      // console.log(id.maxid);
+
+      valeurEtalonnageSec
+        .findOne({
+          where: { id: id.maxid },
+        })
+        .then((valEtalSec) => {
+          res.status(200).json({ valEtalSec });
+        });
+    });
+};
 
 //! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 
@@ -136,6 +159,30 @@ exports.valeureEtalonnageHum = (req, res, next) => {
     });
 };
 
+//* ➖ ➖ ➖ ➖ ➖ ➖ GET Valeure Etalonnage Hum ➖ ➖ ➖ ➖ ➖ ➖ //
+
+const valeurEtalonnageHum = db.etalonnageHum;
+
+exports.getValEtalonnageHum = (req, res) => {
+  valeurEtalonnageHum
+    .findOne({
+      attributes: [[Sequelize.fn('max', Sequelize.col('id')), 'maxid']],
+      raw: true,
+    })
+    .then((id) => {
+      // console.log('Le dernier id de gestionHum est : ', id);
+      // console.log(id.maxid);
+
+      valeurEtalonnageHum
+        .findOne({
+          where: { id: id.maxid },
+        })
+        .then((valEtalHum) => {
+          res.status(200).json({ valEtalHum });
+        });
+    });
+};
+
 //! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 
 //! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ GestionSub ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
@@ -168,6 +215,28 @@ exports.valeureEtalonnageSub = (req, res, next) => {
         '[ GESTION SUB      ] Erreur dans le processus de transfert d l étalonnage Sub',
         error
       );
+    });
+};
+
+const valeurEtalonnageSub = db.etalonnageSub;
+
+exports.getValEtalonnageSub = (req, res) => {
+  valeurEtalonnageSub
+    .findOne({
+      attributes: [[Sequelize.fn('max', Sequelize.col('id')), 'maxid']],
+      raw: true,
+    })
+    .then((id) => {
+      // console.log('Le dernier id de gestionSub est : ', id);
+      // console.log(id.maxid);
+
+      valeurEtalonnageSub
+        .findOne({
+          where: { id: id.maxid },
+        })
+        .then((valEtalSub) => {
+          res.status(200).json({ valEtalSub });
+        });
     });
 };
 
