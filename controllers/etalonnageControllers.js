@@ -3,37 +3,10 @@ const mcpadc = require('mcp-spi-adc');
 const Sequelize = require('sequelize');
 const db = require('../models');
 
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ GestionAir ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
 // Gestion Air.
 const gestionAirEtalonnageModels = db.etalonnageAir;
-
-// Gestion Hum.
-const gestionHumEtalonnageSecModels = db.etalonnageSec;
-const gestionHumEtalonnageHumModels = db.etalonnageHum;
-
-// Gestion Sub.
-const gestionSubEtalonnageModels = db.etalonnageSub;
-
-//* ➖➖➖➖➖➖ Gestion Sonde Température Air ➖➖➖➖➖➖
-
-// Récupération de la température
-exports.etalonnageAir = (req, res, next) => {
-  // console.log('=========> newEtalAirTemp : OK');
-
-  let mcpBroche = 2; // Broche 2.
-  let températureInstantanee;
-
-  const tempSensor = mcpadc.open(mcpBroche, { speedHz: 20000 }, (err) => {
-    if (err) throw err;
-
-    tempSensor.read((err, reading) => {
-      if (err) throw err;
-      // console.log('tempèrature', reading['value']);
-      températureInstantanee = parseFloat((reading['value'] * 40).toFixed(2));
-      // console.log(températureInstantanee);
-      res.status(200).json({ températureInstantanee });
-    });
-  });
-};
 
 //* ➖ ➖ ➖ ➖ ➖ ➖ POST Valeure Etalonnage Air➖ ➖ ➖ ➖ ➖ ➖ //
 
@@ -64,7 +37,39 @@ exports.valeureEtalonnageAir = (req, res, next) => {
       );
     });
 };
-//
+
+//* ➖ ➖ ➖ ➖ ➖ ➖ GET Valeure Etalonnage Air ➖ ➖ ➖ ➖ ➖ ➖ //
+
+exports.getValEtalonnageAir = (req, res) => {
+  res.status(200).json({ temperatureAir });
+
+  console.log('requete getValEtalonnageAir OK');
+
+  // gestionAirEtalonnageModels
+  //   .findOne({
+  //     attributes: [[Sequelize.fn('max', Sequelize.col('id')), 'maxid']],
+  //     raw: true,
+  //   })
+  //   .then((id) => {
+  //     // console.log('Le dernier id de gestionAir est : ', id);
+  //     // console.log(id.maxid);
+
+  //     gestionAirEtalonnageModels
+  //       .findOne({
+  //         where: { id: id.maxid },
+  //       })
+  //       .then((temperatureAir) => {
+  //         res.status(200).json({ temperatureAir });
+  //       });
+  //   });
+};
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ GestionSec ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+// Gestion Sec.
+const gestionHumEtalonnageSecModels = db.etalonnageSec;
 
 //* ➖ ➖ ➖ ➖ ➖ ➖ POST Valeure Etalonnage Sec ➖ ➖ ➖ ➖ ➖ ➖ //
 
@@ -95,6 +100,14 @@ exports.valeureEtalonnageSec = (req, res, next) => {
 };
 //
 
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ GestionHum ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+// Gestion Hum.
+
+const gestionHumEtalonnageHumModels = db.etalonnageHum;
+
 //* ➖ ➖ ➖ ➖ ➖ ➖ POST Valeure Etalonnage Hum➖ ➖ ➖ ➖ ➖ ➖ //
 
 exports.valeureEtalonnageHum = (req, res, next) => {
@@ -122,7 +135,13 @@ exports.valeureEtalonnageHum = (req, res, next) => {
       );
     });
 };
-//
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ GestionSub ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+// Gestion Sub.
+const gestionSubEtalonnageModels = db.etalonnageSub;
 
 //* ➖ ➖ ➖ ➖ ➖ ➖ POST Valeure Etalonnage Sub➖ ➖ ➖ ➖ ➖ ➖ //
 
@@ -151,3 +170,31 @@ exports.valeureEtalonnageSub = (req, res, next) => {
       );
     });
 };
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ GestionOutils ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+//* ➖➖➖➖➖➖ Gestion Sonde Température Air ➖➖➖➖➖➖
+
+// Récupération de la température
+exports.etalonnageAir = (req, res, next) => {
+  // console.log('=========> newEtalAirTemp : OK');
+
+  let mcpBroche = 2; // Broche 2.
+  let températureInstantanee;
+
+  const tempSensor = mcpadc.open(mcpBroche, { speedHz: 20000 }, (err) => {
+    if (err) throw err;
+
+    tempSensor.read((err, reading) => {
+      if (err) throw err;
+      // console.log('tempèrature', reading['value']);
+      températureInstantanee = parseFloat((reading['value'] * 40).toFixed(2));
+      // console.log(températureInstantanee);
+      res.status(200).json({ températureInstantanee });
+    });
+  });
+};
+
+//! ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖

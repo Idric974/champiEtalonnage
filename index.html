@@ -132,6 +132,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
     <script>
       const socket = io();
 
@@ -218,7 +219,8 @@
         // console.log('Etalonnage Air :', msg.etalonnageAir);
         temperatureBruteAir = msg.etalonnageAir;
 
-        let parseTemperatureBruteAir = parseFloat(temperatureBruteAir);
+        let parseTemperatureBruteAir =
+          parseFloat(temperatureBruteAir).toFixed(2);
 
         let parseLocalStorageEtalAir = parseFloat(affichagevalEtalAir);
 
@@ -232,6 +234,29 @@
         document.getElementById('temperatureAirEtalonnee').innerHTML =
           temperatureAirEtalonnee;
       });
+
+      //* ---------------------------------------------------------
+
+      // Recupération de la valeur étalonnage dans la base.
+
+      //* ---------------------------------------------------------
+
+      let getValEtalAir = () => {
+        axios({
+          url: 'http://localhost:3001/api/etalonnageRoutes/etalonnageControllers/',
+          method: 'get',
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+            console.log(JSON.stringify(error));
+          });
+      };
+
+      getValEtalAir();
+
       //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ FIN Etalonnage Air ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 
       //* ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ Etalonnage Hum ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
@@ -309,7 +334,8 @@
         // console.log('Etalonnage Hum :', msg.etalonnageHum);
         temperatureBruteHum = msg.etalonnageHum;
 
-        let parseTemperatureBruteHum = parseFloat(temperatureBruteHum);
+        let parseTemperatureBruteHum =
+          parseFloat(temperatureBruteHum).toFixed(2);
 
         let parseLocalStorageEtalHum = parseFloat(affichagevalEtalHum);
 
@@ -401,7 +427,8 @@
         // console.log('Etalonnage Sec :', msg.etalonnageSec);
         temperatureBruteSec = msg.etalonnageSec;
 
-        let parseTemperatureBruteSec = parseFloat(temperatureBruteSec);
+        let parseTemperatureBruteSec =
+          parseFloat(temperatureBruteSec).toFixed(2);
 
         let parseLocalStorageEtalSec = parseFloat(affichagevalEtalSec);
 
@@ -493,7 +520,8 @@
         // console.log('Etalonnage Sub :', msg.etalonnageSub);
         temperatureBruteSub = msg.etalonnageSub;
 
-        let parseTemperatureBruteSub = parseFloat(temperatureBruteSub);
+        let parseTemperatureBruteSub =
+          parseFloat(temperatureBruteSub).toFixed(2);
 
         let parseLocalStorageEtalSub = parseFloat(affichagevalEtalSub);
 

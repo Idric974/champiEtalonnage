@@ -1,18 +1,20 @@
-// ⭐⭐⭐⭐⭐⭐ Liste des routes disponibles dans l'application ⭐⭐⭐⭐⭐⭐
-
 const express = require('express');
 const router = express.Router();
 
 const stuffCtrl = require('../controllers/etalonnageControllers');
 
-// router.delete('/:id', auth, stuffCtrl.deleteThing);
-
-// Routes étalonnage pour prise de température.
+// gestionAir
 router.get('/etalonnageAir', stuffCtrl.etalonnageAir);
-
+router.get('/getValEtalonnageAir', stuffCtrl.getValEtalonnageAir);
 router.post('/valeureEtalonnageAir', stuffCtrl.valeureEtalonnageAir);
+
+// gestionSec
 router.post('/valeureEtalonnageSec', stuffCtrl.valeureEtalonnageSec);
+
+// gestionHum
 router.post('/valeureEtalonnageHum', stuffCtrl.valeureEtalonnageHum);
+
+// gestionSub
 router.post('/valeureEtalonnageSub', stuffCtrl.valeureEtalonnageSub);
 
 module.exports = router;
