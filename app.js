@@ -29,11 +29,13 @@ db.sequelize.sync({
   force: false,
 });
 
+// /home/pi/Desktop/champiEtalonnage/gestion/gestionAir
 //! Lancement des fichiers étalonnage.
-const etalonnageAir = require('/home/pi/Desktop/champiBack/gestion/gestionAir/etalonnageAir.js');
-const etalonnageHum = require('/home/pi/Desktop/champiBack/gestion/gestionHum/etalonnageHum.js');
-const etalonnageSec = require('/home/pi/Desktop/champiBack/gestion/gestionHum/etalonnageSec.js');
-const etalonnageSub = require('/home/pi/Desktop/champiBack/gestion/gestionSubstrat /etalonnageSub.js');
+
+const etalonnageAir = require('/home/pi/Desktop/champiEtalonnage/gestion/gestionAir/etalonnageAir.js');
+const etalonnageHum = require('/home/pi/Desktop/champiEtalonnage/gestion/gestionHum/etalonnageHum.js');
+const etalonnageSec = require('/home/pi/Desktop/champiEtalonnage/gestion/gestionHum/etalonnageSec.js');
+const etalonnageSub = require('/home/pi/Desktop/champiEtalonnage/gestion/gestionSubstrat/etalonnageSub.js');
 
 //! Utilisation de body parser
 app.use(bodyParser.json());
