@@ -56,7 +56,7 @@ setInterval(() => {
       let count = () => {
         temps = temps++;
         //console.log(temps++);
-        if (temps++ === 9) {
+        if (temps++ === 30) {
           clearInterval(conteur);
         }
 

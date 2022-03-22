@@ -56,7 +56,7 @@ setInterval(() => {
       let count = () => {
         temps = temps++;
         //console.log(temps++);
-        if (temps++ === 9) {
+        if (temps++ === 30) {
           clearInterval(conteur);
         }
 
@@ -91,11 +91,11 @@ setInterval(() => {
   resultats()
     .then((temperatureMoyenneAir) => {
       // Calcule de la température.
-      console.log(
-        bleu,
-        '[ GESTION AIR      ] Temperature Moyenne Air : ',
-        temperatureMoyenneAir
-      );
+      // console.log(
+      //   bleu,
+      //   '[ GESTION AIR      ] Temperature Moyenne Air : ',
+      //   temperatureMoyenneAir
+      // );
     })
     .then(() => {
       //* Transmission des données au serveur socket Io.
